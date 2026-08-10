@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-public class Solution {
+public class Fail {
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuffer output = new StringBuffer();
 	static StringTokenizer st;
@@ -19,20 +19,20 @@ public class Solution {
 		for (int t = 0; t<test_case; t++) {
 			//문제의 개수
 			int n = Integer.parseInt(new StringTokenizer(reader.readLine().trim()).nextToken());
-			Set<Integer> scoreSet = new HashSet<>();
-			scoreSet.add(0);
+			List<Integer> scoreList = new ArrayList<>();
+			scoreList.add(0);
 			st = new StringTokenizer(reader.readLine());
 			for(int i =0; i<n;i++) {
 				int score = Integer.parseInt(st.nextToken());
 				List<Integer>tmp = new ArrayList<>();
-				for(int sc: scoreSet) {
-					tmp.add(sc+score);
-				}
-				for(int sc: tmp) {
-					scoreSet.add(sc);
-				}
+				scoreList.stream().forEach(item -> tmp.add(score+item));
+				tmp.stream().forEach(item -> {
+					if(!scoreList.contains(item)) {
+						scoreList.add(item);
+					}
+				});
 			}
-			output.append("#").append(t+1).append(" ").append(scoreSet.size()).append("\n");
+			output.append("#").append(t+1).append(" ").append(scoreList.size()).append("\n");
 		}
 		System.out.println(output);
 	}
