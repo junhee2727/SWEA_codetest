@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 
 public class Solution {
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	static StringBuffer output = new StringBuffer();
+	static StringBuilder output = new StringBuilder();
 	static StringTokenizer st;
 	static Integer[][] graph;
 	static int[] dx = { 1, -1, 0, 0 };
@@ -46,6 +46,7 @@ public class Solution {
 			deq.add(new Node(0,0,0));
 			while(!deq.isEmpty()) {
 				Node node = deq.pop();
+				if(node.cost > min_graph[node.y][node.x]) continue;
 				for(int i = 0; i<4; i++) {
 					int nx = dx[i] + node.x;
 					int ny = dy[i] + node.y;
@@ -57,7 +58,7 @@ public class Solution {
 					}
 				}
 			}
-			Arrays.stream(min_graph).forEach(item -> System.out.println(Arrays.toString(item)));
+//			Arrays.stream(min_graph).forEach(item -> System.out.println(Arrays.toString(item)));
 			output.append("#").append(t + 1).append(" ").append(min_graph[n - 1][n - 1]).append("\n");
 		}
 		System.out.println(output);
