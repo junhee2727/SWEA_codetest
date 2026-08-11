@@ -43,35 +43,22 @@ public class Solution {
 			}
 			min_graph[0][0] = 0;
 			Deque<Node> deq = new ArrayDeque<>();
-			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
-					for (int k = 0; k < 4; k++) {
-						int nx = dx[k] + j;
-						int ny = dy[k] + i;
-						if (isValid(nx, ny, n)) {
-							// nx, ny 위치의 최소 비용을 담은 노드
-							deq.add(new Node(nx, ny, min_graph[i][j] + graph[ny][nx]));
-							while (!deq.isEmpty()) {
-								Node node = deq.pop();
-								// 현재 경로가 최소 경로일 때, min_graph 갱신 및 deq에 추가
-								if (min_graph[node.y][node.x] > node.cost) {
-									min_graph[node.y][node.x] = node.cost;
-									for (int l = 0; l < 4; l++) {
-										int nnx = dx[l] + node.x;
-										int nny = dy[l] + node.y;
-										if(isValid(nnx, nny, n)) {
-											deq.add(new Node(nnx,nny,min_graph[node.y][node.x]+ graph[nny][nnx]));
-										}
-									}
-								} else {
-								}
-							}
+			deq.add(new Node(0,0,0));
+			while(!deq.isEmpty()) {
+				Node node = deq.pop();
+				for(int i = 0; i<4; i++) {
+					int nx = dx[i] + node.x;
+					int ny = dy[i] + node.y;
+					if(isValid(nx, ny, n)) {
+						if(min_graph[ny][nx] > node.cost + graph[ny][nx]) {
+							min_graph[ny][nx] = node.cost+graph[ny][nx];
+							deq.add(new Node(nx,ny,node.cost+graph[ny][nx]));
 						}
 					}
 				}
 			}
-//			Arrays.stream(min_graph).forEach(item -> System.out.println(Arrays.toString(item)));
-			output.append("#").append(t + 1).append(" ").append(min_graph[n - 1][n - 1]);
+			Arrays.stream(min_graph).forEach(item -> System.out.println(Arrays.toString(item)));
+			output.append("#").append(t + 1).append(" ").append(min_graph[n - 1][n - 1]).append("\n");
 		}
 		System.out.println(output);
 	}
