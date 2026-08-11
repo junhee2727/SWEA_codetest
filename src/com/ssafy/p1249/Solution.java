@@ -41,11 +41,12 @@ public class Solution {
 					min_graph[i][j] = max + 1;
 				}
 			}
-			min_graph[0][0] = 0;
 			Deque<Node> deq = new ArrayDeque<>();
+			min_graph[0][0] = 0;
 			deq.add(new Node(0,0,0));
 			while(!deq.isEmpty()) {
 				Node node = deq.pop();
+				// 조기 종료 코드 (3배 빨라짐!!)
 				if(node.cost > min_graph[node.y][node.x]) continue;
 				for(int i = 0; i<4; i++) {
 					int nx = dx[i] + node.x;
