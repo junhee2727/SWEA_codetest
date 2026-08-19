@@ -53,6 +53,10 @@ public class Solution {
 			min = Math.min(min, cost + getLen(lst.get(cur), en));
 			return;
 		}
+		
+		if(cost > min) {
+			return;
+		}
 
 		for (int i = 0; i < n; i++) {
 			if (visited[i] == false) {
