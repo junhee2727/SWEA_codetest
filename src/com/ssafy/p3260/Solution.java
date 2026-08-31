@@ -38,7 +38,7 @@ public class Solution {
 
 			// 올림이 있었는지.
 			int is_upper = 0;
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < max_len; i++) {
 				int tmp = a[i] + b[i] + is_upper;
 				if (tmp >= 10) {
 					tmp -= 10;
@@ -49,10 +49,14 @@ public class Solution {
 				res[i] = tmp;
 			}
 			
+			//마지막 + 1째 자리
+			if(is_upper == 1) {
+				res[max_len] = 1;
+			}
 			
 
 			output.append("#").append(t + 1).append(" ");
-			for (int i = max_len + 1; i >= 0; i--) {
+			for (int i = max_len; i >= 0; i--) {
 				if (res[i] == null) {
 					continue;
 				}
