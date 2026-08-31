@@ -8,6 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
+
+//풀이시간: 120분
+//제출 횟수: 1회
+//막힌 지점: 같은 수를 합치는 지점
+//핵심 아이디어: 다음에 나오는 수가 현재 수와 같을 때, 현재 수를 2배로 하고, 다음 인덱스를 넘기기
 public class Solution {
     static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     static StringBuilder output = new StringBuilder();

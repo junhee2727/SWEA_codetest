@@ -58,6 +58,7 @@ public class Solution {
 		visited[a] = true;
 
 		
+		boolean flag;
 		while (true) {
 			cnt++;
 			while (!deq.isEmpty()) {
@@ -76,8 +77,7 @@ public class Solution {
 			}
 			tmp.clear();
 			
-			
-			boolean flag = true;
+			flag = true;
 			for(boolean bo: visited) {
 				if(bo == false) {
 					flag = false;
