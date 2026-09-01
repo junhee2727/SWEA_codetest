@@ -58,7 +58,7 @@ public class Solution2 {
 					if (cn.minimum > Math.pow(Math.pow(nx - cx, 2) + Math.pow(ny - cy, 2), 0.5) * e) {
 						cn.minimum = Math.pow(Math.pow(nx - cx, 2) + Math.pow(ny - cy, 2), 0.5) * e;
 						if (prev != -1) {
-							graph[prev].removeLast();
+							graph[prev].remove(graph.length-1);
 						}
 						graph[j].add(i);
 						prev = j;
