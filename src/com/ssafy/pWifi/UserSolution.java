@@ -147,9 +147,9 @@ class UserSolution {
 			/*
 			 * 연결 제한 자체를 넘어간다면 바깥쪽은 더 볼 필요 없다.
 			 */
-			if (minRemainDistance * 10 > mLimit) {
-				break;
-			}
+//			if (minRemainDistance * 10 > mLimit) {
+//				break;
+//			}
 
 			/*
 			 * 이미 mCount개를 확보했고,
