@@ -13,7 +13,7 @@ public class Solution {
 
 	static int N, X, max_cnt;
 	static Note[] note_list;
-	static int[] ham_list, res_list;
+	static int[] ham_list, res_list, prefix;
 
 	public static void main(String[] args) throws IOException {
 		int test_case = Integer.parseInt(reader.readLine());
@@ -34,10 +34,12 @@ public class Solution {
 			}
 
 			ham_list = new int[N];
+			prefix = new int[N+1];
+			
 			res_list = null;
 			max_cnt = -1;
 
-			dfs(0, 0);
+			dfs(0);
 
 			output.append("#").append(t + 1).append(" ");
 			if (res_list == null) {
@@ -52,32 +54,40 @@ public class Solution {
 		System.out.println(output);
 	}
 
-	static void dfs(int idx, int value) {
+	static void dfs(int idx) {
+		//가지치기
+		if (prefix[idx] + (N - idx) * X <= max_cnt)
+		    return;
+		
 		if (idx == N) {
-			// 조건을 만족한다면
-			if (!isAvail())
-				return;
-			if (value > max_cnt) {
+			if (prefix[N] > max_cnt) {
+				max_cnt = prefix[N];
 				res_list = ham_list.clone();
-				max_cnt = value;
 			}
 			return;
 		}
 
 		for (int i = 0; i <= X; i++) {
 			ham_list[idx] = i;
-			dfs(idx + 1, value + i);
+			prefix[idx + 1] = prefix[idx] + i;
+			
+			if(!isAvail(idx + 1))
+				continue;
+			
+			dfs(idx + 1);
 		}
 		return;
 	}
 
-	static boolean isAvail() {
+	static boolean isAvail(int filled) {
 		for (Note n : note_list) {
-			int sum = 0;
-			for (int i = n.l - 1; i <= n.r - 1; i++) {
-				sum += ham_list[i];
-			}
-			if (sum != n.cnt)
+			
+			if(n.r != filled)
+				continue;
+			
+			int sum = prefix[n.r] - prefix[n.l -1];
+			
+			if(sum != n.cnt)
 				return false;
 		}
 		return true;
