@@ -36,7 +36,7 @@ public class Solution {
 			int bag[][] = new int[N+1][K+1];
 			
 			
-			//¹«°Ô°¡ 0ÀÏ ¶§, Á¾·ù°¡ 0ÀÏ ‹š¿¡´Â max_value = 0
+			//ë¬´ê²Œê°€ 0ì¼ ë•Œ, ì¢…ë¥˜ê°€ 0ì¼ ë–„ì—ëŠ” max_value = 0
 			for(int y = 1; y <= N; y++) {
 				int weight = node_list[y-1].weight;
 				int value = node_list[y-1].value;

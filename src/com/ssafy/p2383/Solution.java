@@ -51,20 +51,20 @@ public class Solution {
 	}
 	
 	
-	//»ç¶÷ÀÇ ¼ö´Â ÃÖ´ë 10ÀÌ¹Ç·Î, ºñÆ® ¸¶½ºÅ©¸¦ ÀÌ¿ëÇØ ¾î´À °è´ÜÀ» ¹æ¹®ÇÒÁö¸¦ ±â·ÏÇÑ´Ù.
+	//ì‚¬ëŒì˜ ìˆ˜ëŠ” ìµœëŒ€ 10ì´ë¯€ë¡œ, ë¹„íŠ¸ ë§ˆìŠ¤í¬ë¥¼ ì´ìš©í•´ ì–´ëŠ ê³„ë‹¨ì„ ë°©ë¬¸í• ì§€ë¥¼ ê¸°ë¡í•œë‹¤.
 	static void dfs(int depth, int vis) {
 		if(depth == node_list.size()) {
 			simulate(vis);
 			return;
 		}
 		
-		//ÇØ´ç depth¸¦ ¹æ¹®ÇÏ´Â °æ¿ì(°è´Ü 1À» »ç¿ëÇÏ´Â °æ¿ì)
+		//í•´ë‹¹ depthë¥¼ ë°©ë¬¸í•˜ëŠ” ê²½ìš°(ê³„ë‹¨ 1ì„ ì‚¬ìš©í•˜ëŠ” ê²½ìš°)
 		dfs(depth + 1, vis|(1 << depth));
-		//ÇØ´ç depth¸¦ ¹æ¹®ÇÏÁö ¾Ê´Â °æ¿ì(°è´Ü 0À» »ç¿ëÇÏ´Â °æ¿ì)
+		//í•´ë‹¹ depthë¥¼ ë°©ë¬¸í•˜ì§€ ì•ŠëŠ” ê²½ìš°(ê³„ë‹¨ 0ì„ ì‚¬ìš©í•˜ëŠ” ê²½ìš°)
 		dfs(depth + 1, vis);
 	}
 	
-	//vis ¹è¿­À» ÀÌ¿ë. ÃÖ´Ü ½Ã°£À» ±¸ÇÑ´Ù.
+	//vis ë°°ì—´ì„ ì´ìš©. ìµœë‹¨ ì‹œê°„ì„ êµ¬í•œë‹¤.
 	static void simulate(int vis) {
 		
 		PriorityQueue<Integer>[] que = new PriorityQueue[2];
@@ -83,7 +83,7 @@ public class Solution {
 			que[ss].add(dist + 1);
 		}
 		
-		//0¹ø °è´Ü°ú 1¹ø °è´ÜÀ¸·Î °¡´Â ½Ã¹Ä·¹ÀÌ¼Ç
+		//0ë²ˆ ê³„ë‹¨ê³¼ 1ë²ˆ ê³„ë‹¨ìœ¼ë¡œ ê°€ëŠ” ì‹œë®¬ë ˆì´ì…˜
 		for(int i = 0; i < 2; i++) {
 			int time = 0;
 			PriorityQueue<Integer> queue = que[i];
@@ -92,13 +92,13 @@ public class Solution {
 			
 			
 			while(true) {
-				//ÅğÀå
+				//í‡´ì¥
 				while(!tmpque.isEmpty() && tmpque.peek() == time) {
 					tmpque.poll();
 				}
 				
 				
-				//ÀÔÀå
+				//ì…ì¥
 				while(queue.size() > 0 && tmpque.size() < 3 && queue.peek() <= time) {
 					tmpque.offer(time+stair.value);
 					queue.poll();
